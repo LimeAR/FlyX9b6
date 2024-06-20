@@ -17,7 +17,7 @@ const mediaStream = await navigator.mediaDevices.getUserMedia({
   video: true
 });
 
-const source = createMediaStreamSource(mediaStream, { cameraType: 'back' 
+const source = createMediaStreamSource(mediaStream, { cameraType: 'user' 
 })
 
 await session.setSource(source);
@@ -25,12 +25,6 @@ await session.setSource(source);
 //source.setRenderSize(window.innerWidth, window.innerHeight)
 
 session.play('capture');
-//await session.applyLens(lenses[int])
-
-//const lens = await cameraKit.lensRepository.loadLens(
-//  '50507980875',
-//  '7fa3fa7c-e626-4539-b9db-73cdb0b0b2ce'
-//);
 
 await session.applyLens();
 
