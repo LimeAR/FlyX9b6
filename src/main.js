@@ -8,26 +8,10 @@ const session = await cameraKit.createSession()
 
 document.getElementById('canvas').replaceWith(session.output.capture);
 
-const {lenses} = await cameraKit.lensRepository.loadLensGroups(['b6b6e979-46ce-4c01-903f-0bd39ad43afc'])
-
-//let s = 0;
-//if (s = 1) {
-
-  //await session.applyLens(lenses[1])
-//}
-//else{
-
-  //await session.applyLens(lenses[0])
-//}
-
-document.getElementById('1').onclick = function(){switchLens(1)};
-document.getElementById('2').onclick = function(){switchLens(2)};
-document.getElementById('3').onclick = function(){switchLens(3)};
-document.getElementById('4').onclick = function(){switchLens(4)};
-
-function switchLens(int) {
-  session.applyLens(lenses[int]);
-}
+const lens = await cameraKit.lensRepository.loadLens(
+    '27421317-68b3-4588-97a0-863629cd0d06',
+    '<1ab5269b-f2b0-4570-a30f-74a123521727>'
+  );
 
 const mediaStream = await navigator.mediaDevices.getUserMedia({
   video: true
@@ -48,6 +32,6 @@ session.play('capture');
 //  '7fa3fa7c-e626-4539-b9db-73cdb0b0b2ce'
 //);
 
-//await session.applyLens(lens);
+await session.applyLens();
 
 })();
