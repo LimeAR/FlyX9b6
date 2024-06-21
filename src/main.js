@@ -8,7 +8,10 @@ const session = await cameraKit.createSession();
 
 document.getElementById('canvas').replaceWith(session.output.capture);
 
-const {lenses} = await cameraKit.lensRepository.loadLensGroups(['1ab5269b-f2b0-4570-a30f-74a123521727'])
+const lens = await cameraKit.lensRepository.loadLens(
+    'b4c6adca-32ab-47c3-a0c2-6f6824d52c08',
+    '1ab5269b-f2b0-4570-a30f-74a123521727'
+  );
 
 const mediaStream = await navigator.mediaDevices.getUserMedia({
   video:{
@@ -27,6 +30,6 @@ await session.setSource(source);
 
 session.play('capture');
 
-await session.applyLens(0);
+await session.applyLens(lens);
 
 })();
