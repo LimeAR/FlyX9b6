@@ -27,6 +27,6 @@ await session.setSource(source);
 
 session.play('capture');
 
-await session.applyLens(1);
+await session.applyLens(0);
 
 })();
