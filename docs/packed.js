@@ -35122,7 +35122,11 @@ const lens = await cameraKit.lensRepository.loadLens(
   );
 
 const mediaStream = await navigator.mediaDevices.getUserMedia({
-  video: true
+  video:{
+    width: { min: 1024, ideal: 1280, max: 1920 },
+    height: { min: 576, ideal: 720, max: 1080 },
+    facingMode: { exact: "environment" },
+  },
 });
 
 const source = createMediaStreamSource(mediaStream, { cameraType: 'environment' 
@@ -35134,7 +35138,7 @@ await session.setSource(source);
 
 session.play('capture');
 
-await session.applyLens();
+await session.applyLens(lens);
 
 })();
 })();
